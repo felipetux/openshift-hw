@@ -25,7 +25,7 @@ pipeline {
             steps {
                 script {
                     openshift.withCluster() {
-                        openshift.withProject("${APP}-dev") {
+                        openshift.withProject("dev-app02") {
                             if (!openshift.selector("bc", "${APP}").exists()) {
                                 openshift.newBuild("--image-stream=redhat-openjdk18-openshift:1.2", "--name=${APP}", "--binary=true");                   
                             }
