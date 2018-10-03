@@ -40,7 +40,7 @@ pipeline {
             steps {
                 script {
                     openshift.withCluster() {
-                        openshift.withProject("${APP}-dev") {
+                        openshift.withProject("dev-app02") {
                             if (!openshift.selector("dc", "${APP}").exists()) {
                                 createApp("${APP}", "latest");                   
                             } else {
