@@ -30,8 +30,7 @@ pipeline {
                                 openshift.newBuild("--image-stream=redhat-openjdk18-openshift:1.2", "--name=${APP}", "--binary=true");                   
                             }
                             // Starts a new build and waits for its completion
-                            openshift.selector("bc", "${APP}").startBuild();
-                            openshift.tag("${APP}", "${APP}:latest")
+                            openshift.selector("bc", "${APP}").startBuild("--from-file=target/${APP}-swarm.jar", "--wait=true");
                         }
                     }
                 }
