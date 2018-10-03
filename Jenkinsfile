@@ -31,6 +31,7 @@ pipeline {
                             }
                             // Starts a new build and waits for its completion
                             openshift.selector("bc", "${APP}").startBuild();
+                            openshift.tag("${APP}", "${APP}:latest")
                         }
                     }
                 }
@@ -46,7 +47,8 @@ pipeline {
                             } else {
                                 // Rollouts to latest version
                                 openshift.selector("dc", "${APP}").rollout().latest();   
-                            }          
+                            }
+                            
                         }
                     }
                 }
